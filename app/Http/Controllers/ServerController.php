@@ -53,10 +53,13 @@ class ServerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show()
     {
         //get
-        return view('servers.home');
+        return view('servers.home', [
+            'servers' => Server::all()
+        ]);
 
     }
 
