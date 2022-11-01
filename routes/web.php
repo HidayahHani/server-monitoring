@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ServerController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,16 @@ use App\Http\Controllers\ServerController;
 //     return view('welcome');
 // });
 
-Route::get('/', [HomeController::class, 'login'])->name('home.login');
+Auth::routes();
+
+Route::group(['middleware' => ['auth']], function (){
+    Route::get('dashboard', [LoginController::class, 'dashboard']);
+});
+
+
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('custom-login', [LoginController::class, 'customLogin'])->name('login.custom');
+Route::get('logout', [LoginController::class, 'logout']);
 
 // Route::resource('users', UsersController::class);
 Route::get('/users/register', [UsersController::class, 'create'])->name('users.register');
@@ -30,3 +40,8 @@ Route::post('/users/store', [UsersController::class, 'store'])->name('users.stor
 Route::get('servers/home', [ServerController::class, 'show'])->name('servers.home');
 Route::get('servers/create', [ServerController::class, 'create'])->name('servers.create');
 Route::post('servers/store', [ServerController::class, 'store'])->name('servers.store');
+Route::put('servers/update', [ServerController::class, 'update'])->name('servers.update');
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

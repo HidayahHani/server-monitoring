@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
+
 use Illuminate\Http\Request;
 use App\Models\Server;
 
@@ -14,8 +16,7 @@ class ServerController extends Controller
      */
     public function index()
     {
-        //
-        // return view('servers.home');
+        
     }
 
     /**
@@ -57,10 +58,12 @@ class ServerController extends Controller
     public function show()
     {
         //get
+
         return view('servers.home', [
             'servers' => Server::all()
-        ]);
-
+        ]
+        
+        );
     }
 
     /**
@@ -84,6 +87,15 @@ class ServerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // $server = Server::findOrFail($id);
+
+        // $response = Http::get($url);
+
+        // // dd($response->status());
+
+        // $server->active = $request->input($response->status());
+        // $server->save();
+
     }
 
     /**
