@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Http;
 
 use Illuminate\Http\Request;
 use App\Models\Server;
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
 
 class ServerController extends Controller
 {
@@ -14,9 +16,16 @@ class ServerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
+        $command = (new PingCommandBuilder('192.168.1.1'));
+    
+        // Sample output from Windows based server
+        $ping = (new Ping($command))->run();
         
+        dd($ping);
     }
 
     /**
@@ -60,7 +69,8 @@ class ServerController extends Controller
         //get
 
         return view('servers.home', [
-            'servers' => Server::all()
+            'servers' => Server::all(),
+            
         ]
         
         );
@@ -74,7 +84,7 @@ class ServerController extends Controller
      */
     public function edit($id)
     {
-        //
+        //GET
     }
 
     /**
@@ -86,7 +96,8 @@ class ServerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //POST
+
         // $server = Server::findOrFail($id);
 
         // $response = Http::get($url);
@@ -106,6 +117,6 @@ class ServerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //DELETE
     }
 }

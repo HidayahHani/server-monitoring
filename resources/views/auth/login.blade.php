@@ -12,11 +12,12 @@
                         <div class="card shadow-2-strong" style="border-radius: 1rem;">
                             <div class="card-body p-5 text-center">
                                 <h3 class="mb-5">Server Monitoring System</h3>
-                                <!-- @if ($message = Session::get('error'))
+                                @if ($errors->has('username, password'))
                                     <div class="alert alert-danger">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ $success }}</strong>
                                     </div>
-                                @endif -->
+                                @endif
+
                                 <div class="form-outline mb-4">
                                     <label class="form-label">Username</label>
                                     <input type="text" class="form-control form-control-lg"

@@ -27,5 +27,7 @@
 <!-- <a href="{{ route('servers.update') }}"><button class="btn" type="submit">ping</button></a> -->
 
 
+
+
 @endsection
 

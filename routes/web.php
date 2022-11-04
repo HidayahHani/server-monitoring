@@ -41,6 +41,7 @@ Route::get('servers/home', [ServerController::class, 'show'])->name('servers.hom
 Route::get('servers/create', [ServerController::class, 'create'])->name('servers.create');
 Route::post('servers/store', [ServerController::class, 'store'])->name('servers.store');
 Route::put('servers/update', [ServerController::class, 'update'])->name('servers.update');
+Route::get('servers/index', [ServerController::class, 'index'])->name('servers.index');
 
 Auth::routes();
 
